@@ -1,0 +1,42 @@
+[
+    {
+        "Name":"Blue palm angels pants",
+        "Description":"   Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolore labore aliquid iure quod reprehenderit perspiciatis similique ex harum eaque.",
+        "Price":20,
+        "PictureUrl":"images/products/",
+        "ProductTypeId":3,
+        "ProductBrandId":2
+    },
+    {
+        "Name":"Essentials sweatshirt",
+        "Description":"   Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolore labore aliquid iure quod reprehenderit perspiciatis similique ex harum eaque.",
+        "Price":8,
+        "PictureUrl":"images/products/",
+        "ProductTypeId":2,
+        "ProductBrandId":5
+    },
+    {
+        "Name":"Heavy Flannel shirt",
+        "Description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolore labore aliquid iure quod reprehenderit perspiciatis similique ex harum eaque.",
+        "Price":10,
+        "PictureUrl":"images/products/",
+        "ProductTypeId":4,
+        "ProductBrandId":6
+    },
+       {
+        "Name":"Versace shorts",
+        "Description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolore labore aliquid iure quod reprehenderit perspiciatis similique ex harum eaque.",
+        "Price":7,
+        "PictureUrl":"images/products/",
+        "ProductTypeId":1,
+        "ProductBrandId":3
+    },
+    {
+        "Name":"Northface jacket",
+        "Description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolore labore aliquid iure quod reprehenderit perspiciatis similique ex harum eaque.",
+        "Price":18,
+        "PictureUrl":"images/products/",
+        "ProductTypeId":4,
+        "ProductBrandId":3
+    }
+]

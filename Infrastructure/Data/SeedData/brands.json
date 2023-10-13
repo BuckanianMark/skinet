@@ -1,0 +1,26 @@
+[ 
+    {
+        "Id":1,
+        "Name":"NorthFace"
+    },
+    {
+        "Id":2,
+        "Name":"LuisVuiton"
+    },
+    {
+        "Id":3,
+        "Name":"Versace"
+    },
+    {
+        "Id":4,
+        "Name":"Palm Angels"
+    },
+    {
+        "Id":5,
+        "Name":"Essentials"
+    },
+    {
+        "Id":6,
+        "Name":"Other"
+    }
+]
