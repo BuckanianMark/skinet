@@ -1,4 +1,5 @@
 using System;
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ builder.Services.AddSwaggerGen();
    
 });
 
+builder.Services.AddAutoMapper(typeof(Mappingprofiles));
+
 
 
 
@@ -27,6 +30,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 
 //configuration to ensure when we start the program the database is created and updated
 
@@ -57,6 +61,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+ app.UseStaticFiles();
 
 app.UseAuthorization();
 
