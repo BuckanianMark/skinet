@@ -11,6 +11,7 @@ using Core.Specifications;
 using API.Dtos;
 using AutoMapper;
 using API.Errors;
+using System.Data.SqlTypes;
 
 namespace API.Controllers
 {
@@ -34,9 +35,13 @@ namespace API.Controllers
         }
    
     [HttpGet]
-    public  async Task<ActionResult<IReadOnlyList<ProductsToReturnDto>>> GetProducts() 
+    public  async Task<ActionResult<IReadOnlyList<ProductsToReturnDto>>> GetProducts(
+        string? sort,int? brandId,int? TypeId) 
     {
-        var spec = new ProductsWithTypesAndBrandsSpecification();
+       
+        var spec = new ProductsWithTypesAndBrandsSpecification(sort,brandId,TypeId);
+
+
         var products = await _productsRepo.ListAsync(spec);
 
         return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductsToReturnDto>>(products));
