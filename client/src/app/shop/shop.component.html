@@ -1,1 +1,70 @@
-<p>shop works!</p>
+<div class="p-[15px]">
+
+    <div class="md:flex grid justify-center items-start">
+
+       <span class="px-[5px] py-[4px] flex-col flex items-center justify-center" id="filters">
+        <h3 class="text-[17px] uppercase text-[#3b3b3d] font-[600]">Filters:</h3>
+        <div>
+            <div class="px-[13px] py-[8px] ">              
+                <h5 class="text-[#b5a014]">Sort BY</h5>
+                <select class="outline-none border-2 p-1">
+                    <option selected>Alphabetical</option>
+                    <option>Price:Low to High</option>
+                    <option>Price:High to Low</option>
+                </select>
+
+            </div>
+            <div class="bg-[whitesmoke]  px-[13px] py-[8px] mt-[10px] items-center justify-center gap-2 flex md:flex-col">
+          
+                <h4 class="text-[#b5a014] text-[17px] md:underline">Brands</h4>
+                <ul class="text-[#444] flex md:flex-col gap-2">
+                    <li>Gucci</li>
+                    <li>NorthFace</li> 
+                    <li>Essentials</li>
+                </ul>
+            </div>
+            <div class="bg-[whitesmoke] px-[13px] py-[8px] mt-[10px] items-center justify-center gap-2 flex md:flex-col">
+                <h4 class="text-[#b5a014] text-[17px] md:underline">Types</h4>
+                <ul class="text-[#444] flex md:flex-col gap-2">
+                    <li>Shorts</li>
+                    <li>Jackets</li>
+                    <li>SweatPants</li>
+                    <li>SweatPants</li>
+                </ul>
+            </div>
+        </div>
+      
+    </span> 
+
+       <span class="flex flex-col">
+        <div class="flex float-right md:flex-row flex-col right-0 justify-center gap-[10px] items-center mb-[10px]">
+            <h2 class="text-gray-800">Showing <strong>10</strong>of <strong>18</strong> Results</h2>
+            <div class="flex gap-[10px]">
+                <input type="text" placeholder="Search Here..." class="bg-[whitesmoke] px-[4px] py-[4px] rounded-md">
+                <button class="bg-[#6734eb] px-[4px] py-[4px] text-white rounded-md">Search</button>
+                <button class="bg-[whitesmoke] px-[4px] py-[4px] text-[#6734eb] border-2 outline-none rounded-md">Reset</button>
+            </div>    
+            
+            
+        </div>   
+        <ul class="flex items-center justify-center gap-[30px] flex-wrap">
+            
+            <!-- <div *ngFor="let product of products">
+              <app-product-item [product]="product"></app-product-item>
+            </div>  -->
+            <li *ngFor="let product of products" class="bg-[whitesmoke] rounded-md overflow-hidden md:w-[200px] md:h-[350px] w-[150px] h-[300px]"  id="container">
+            
+            <img src={{product.pictureUrl}} width="200" height="200" id="Image">
+            <div class="details px-[10px] py-[5px]">
+                <h3 class="text-gray-800 uppercase text-[17px]"> {{product.name}}</h3>
+                <p class="font-semibold text-[17px]" id="price">{{product.price | currency}}</p>
+                <a><i class="fa fa-shopping-basket "></i></a>
+            </div>  
+          
+        </li>
+        </ul>
+    </span>
+    </div>
+</div>
+
+

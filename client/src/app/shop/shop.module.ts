@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ShopComponent } from './shop.component';
+
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    ShopComponent,
+   
+   
+  ],
+  exports:[ShopComponent]
 })
 export class ShopModule { }
