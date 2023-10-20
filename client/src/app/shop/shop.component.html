@@ -7,29 +7,40 @@
         <div>
             <div class="px-[13px] py-[8px] ">              
                 <h5 class="text-[#b5a014]">Sort BY</h5>
-                <select class="outline-none border-2 p-1">
-                    <option selected>Alphabetical</option>
-                    <option>Price:Low to High</option>
-                    <option>Price:High to Low</option>
+                <select class="outline-none border-2 p-1" (change)="onSortSelected($event.target.value)">
+                    <option 
+                    [value]="sort.value"
+                    *ngFor="let sort of sortOptions">
+                    {{sort.name}}
+                    </option>
                 </select>
 
             </div>
             <div class="bg-[whitesmoke]  px-[13px] py-[8px] mt-[10px] items-center justify-center gap-2 flex md:flex-col">
           
                 <h4 class="text-[#b5a014] text-[17px] md:underline">Brands</h4>
-                <ul class="text-[#444] flex md:flex-col gap-2">
-                    <li>Gucci</li>
-                    <li>NorthFace</li> 
-                    <li>Essentials</li>
+                <ul class="text-[#444] cursor-pointer flex md:flex-col gap-2">
+                    <li 
+                    [class.active]="brand.id === this.shopParams.brandId"
+                    [value]="brand.id"
+                    (click)="onBrandSelected(brand.id)"
+                    *ngFor="let brand of brands" class="capitalize">
+                        {{brand.name}}
+                    </li>
+                   
                 </ul>
             </div>
-            <div class="bg-[whitesmoke] px-[13px] py-[8px] mt-[10px] items-center justify-center gap-2 flex md:flex-col">
+            <div class="bg-[whitesmoke] px-[13px] py-[8px] mt-[10px] items-center justify-center cursor-pointer gap-2 flex md:flex-col">
                 <h4 class="text-[#b5a014] text-[17px] md:underline">Types</h4>
                 <ul class="text-[#444] flex md:flex-col gap-2">
-                    <li>Shorts</li>
-                    <li>Jackets</li>
-                    <li>SweatPants</li>
-                    <li>SweatPants</li>
+                    <li 
+                    [class.active]="type.id === this.shopParams.typeId"
+                    [value]="type.id"
+                    (click)="onTypeSelected(type.id)"
+                    *ngFor="let type of types" class="capitalize">
+                        {{type.name}}
+                    </li>
+    
                 </ul>
             </div>
         </div>
@@ -52,17 +63,24 @@
             <!-- <div *ngFor="let product of products">
               <app-product-item [product]="product"></app-product-item>
             </div>  -->
-            <li *ngFor="let product of products" class="bg-[whitesmoke] rounded-md overflow-hidden md:w-[200px] md:h-[350px] w-[150px] h-[300px]"  id="container">
+            <li *ngFor="let product of products" class="bg-[whitesmoke] rounded-md overflow-hidden md:w-[200px] md:h-[380px] w-[150px] h-[300px]"  id="container">
             
-            <img src={{product.pictureUrl}} width="200" height="200" id="Image">
+            <img src={{product.pictureUrl}} alt="{{product.name}}" width="200" height="200" id="Image">
             <div class="details px-[10px] py-[5px]">
                 <h3 class="text-gray-800 uppercase text-[17px]"> {{product.name}}</h3>
-                <p class="font-semibold text-[17px]" id="price">{{product.price | currency}}</p>
+                <p class="font-semibold text-[17px] text-[#555]">{{product.price | currency}}</p>
+                <a class="py-1 px-2 rounded-sm text-white"  id="view"> view</a>
                 <a><i class="fa fa-shopping-basket "></i></a>
             </div>  
           
         </li>
         </ul>
+        <div>
+            <i class="fa fa-arrow-left"></i>
+            <span class="">1</span>
+            <span class="">2</span>
+            <i class="fa fa-arrow-right"></i>
+        </div>
     </span>
     </div>
 </div>

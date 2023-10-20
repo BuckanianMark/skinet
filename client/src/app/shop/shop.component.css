@@ -19,11 +19,16 @@
     justify-content: center;
     color: #6734eb;
 }
-#price{
+li.active{
+    background-color: #6734eb;
+}
+#view{
     position: absolute;
     bottom: 0;
     margin-bottom: 10px;
-    color: #555;
+    background: #b5a014;
+    cursor: pointer;
+
 }
 #filters li{
     background-color: white;
