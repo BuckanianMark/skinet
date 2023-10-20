@@ -65,6 +65,7 @@ export class ShopComponent implements OnInit{
     this.getProducts();
   }
   onTypeSelected(typeId:number){
+    //const filterValue = (event?.target as HTMLSelectElement).value
     this.shopParams.typeId = typeId
     this.getProducts()
   }

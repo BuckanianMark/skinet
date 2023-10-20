@@ -7,7 +7,11 @@
         <div>
             <div class="px-[13px] py-[8px] ">              
                 <h5 class="text-[#b5a014]">Sort BY</h5>
-                <select class="outline-none border-2 p-1" (change)="onSortSelected($event.target.value)">
+                <select 
+                class="outline-none border-2 p-1" 
+                
+                (change)="onSortSelected(somevar = $event.target.value)"
+                >
                     <option 
                     [value]="sort.value"
                     *ngFor="let sort of sortOptions">
