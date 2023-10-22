@@ -3,10 +3,15 @@
         <h1 class="text-[#6734eb] text-3xl font-bold" routerLink="/">BuckNet</h1>
     </div>
     
-        <span class="md:flex grid items-center uppercase text-[#3b3b3d] justify-between gap-[10px]">
-            <a  [routerLink]="['/']" routerLinkActive="" >Home</a>
-            <a  [routerLink]="['/shop']" routerLinkActive="" >Shop</a>
-            <a  [routerLink]="['/']" routerLinkActive="">Contact</a>
+        <span id="links" class="md:flex grid items-center uppercase text-[#3b3b3d] justify-between gap-[10px]">
+            <a 
+            [routerLinkActiveOptions]="{exact:true}"
+             [routerLink]="['/']"
+             routerLinkActive="active" >Home</a>
+            <a  
+            [routerLink]="['/shop']"
+             routerLinkActive="active" >Shop</a>
+            <a  [routerLink]="['/test-error']" routerLinkActive="active">Errors</a>
             
         </span>
                 <div class="md:flex items-center relative">

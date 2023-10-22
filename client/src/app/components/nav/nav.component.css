@@ -1,3 +1,8 @@
 a{
     cursor: pointer;
+    text-decoration: none;
+}
+#links a.active{
+    border-bottom: 2px solid #6734eb;
+    color: #6734eb;
 }

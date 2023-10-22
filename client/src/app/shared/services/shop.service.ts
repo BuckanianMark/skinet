@@ -5,6 +5,7 @@ import { delay, map } from 'rxjs';
 import { IPagination } from '../models/pagination';
 import { IBrand } from '../models/brands';
 import { IType } from '../models/productType';
+import { IProduct } from '../models/products';
 
 
 @Injectable({
@@ -40,6 +41,9 @@ export class ShopService {
             return response.body;
           })
         );
+  }
+  getProduct(id:number) {
+    return this.http.get<IProduct>(this.baseUrl + `/api/products/${id}` )
   }
   getProductBrands() {
     return this.http.get<IBrand[]>(this.baseUrl +'/productBrand')
