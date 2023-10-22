@@ -10,8 +10,9 @@
                 <select 
                 class="outline-none border-2 p-1" 
                 
-                (change)="onSortSelected(somevar = $event.target.value)"
+                
                 >
+                <!-- (change)="onSortSelected($event.target.value)"  -->
                     <option 
                     [value]="sort.value"
                     *ngFor="let sort of sortOptions">
@@ -55,9 +56,17 @@
         <div class="flex float-right md:flex-row flex-col right-0 justify-center gap-[10px] items-center mb-[10px]">
             <h2 class="text-gray-800">Showing <strong>10</strong>of <strong>18</strong> Results</h2>
             <div class="flex gap-[10px]">
-                <input type="text" placeholder="Search Here..." class="bg-[whitesmoke] px-[4px] py-[4px] rounded-md">
-                <button class="bg-[#6734eb] px-[4px] py-[4px] text-white rounded-md">Search</button>
-                <button class="bg-[whitesmoke] px-[4px] py-[4px] text-[#6734eb] border-2 outline-none rounded-md">Reset</button>
+                <input type="text"
+                #search
+                (keyup.enter)="onSearch()"
+                placeholder="Search Here..." 
+                class="bg-[whitesmoke] px-[4px] py-[4px] rounded-md">
+                <button
+                (click)=" onSearch()" 
+                class="bg-[#6734eb] px-[4px] py-[4px] text-white rounded-md">Search</button>
+                <button 
+                (click)="onReset()"
+                class="bg-[whitesmoke] px-[4px] py-[4px] text-[#6734eb] border-2 outline-none rounded-md">Reset</button>
             </div>    
             
             
@@ -72,8 +81,11 @@
             <img src={{product.pictureUrl}} alt="{{product.name}}" width="200" height="200" id="Image">
             <div class="details px-[10px] py-[5px]">
                 <h3 class="text-gray-800 uppercase text-[17px]"> {{product.name}}</h3>
-                <p class="font-semibold text-[17px] text-[#555]">{{product.price | currency}}</p>
-                <a class="py-1 px-2 rounded-sm text-white"  id="view"> view</a>
+                <p class="font-semibold text-[17px] text-[#555]">{{product.price }}</p>
+                <a 
+                 routerLinkActive="router-link-active" 
+                class="py-1 px-2 rounded-sm text-white" 
+                 id="view"> view</a>
                 <a><i class="fa fa-shopping-basket "></i></a>
             </div>  
           

@@ -1,0 +1,9 @@
+<li *ngFor="let product of products" class="bg-[whitesmoke] rounded-md overflow-hidden md:w-[200px] md:h-[350px] w-[150px] h-[300px]"  id="container">
+            
+    <img src={{product.pictureUrl}} width="200" height="200" id="Image">
+    <div class="details px-[10px] py-[5px]">
+        <h3 class="text-gray-800 uppercase text-[17px]"> {{product.name}}</h3>
+        <p class="font-semibold text-[17px]" id="price">{{product.price }}</p>
+        <a><i class="fa fa-shopping-basket "></i></a>
+    </div>     
+</li>

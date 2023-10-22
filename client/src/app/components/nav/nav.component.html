@@ -1,12 +1,13 @@
 <div class="flex items-center justify-between px-[15px] py-[8px]">
     <div>
-        <h1 class="text-[#6734eb] text-3xl font-bold">BuckNet</h1>
+        <h1 class="text-[#6734eb] text-3xl font-bold" routerLink="/">BuckNet</h1>
     </div>
     
         <span class="md:flex grid items-center uppercase text-[#3b3b3d] justify-between gap-[10px]">
-            <p>Home</p>
-            <p>Shop</p>
-            <p>Contact</p>
+            <a  [routerLink]="['/']" routerLinkActive="" >Home</a>
+            <a  [routerLink]="['/shop']" routerLinkActive="" >Shop</a>
+            <a  [routerLink]="['/']" routerLinkActive="">Contact</a>
+            
         </span>
                 <div class="md:flex items-center relative">
                     <a class="flex items-center justify-center md:mr-4">

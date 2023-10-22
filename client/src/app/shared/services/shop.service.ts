@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPagination } from '../shared/models/pagination';
-import { IBrand } from '../shared/models/brands';
-import { IType } from '../shared/models/productType';
+import { shopParams } from '../models/shopParams';
 import { delay, map } from 'rxjs';
-import { shopParams } from '../shared/models/shopParams';
+import { IPagination } from '../models/pagination';
+import { IBrand } from '../models/brands';
+import { IType } from '../models/productType';
+
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class ShopService {
     }
     if(shopParams.sort) {
       params = params.append('sort',shopParams.sort)
+    }
+    if(shopParams.search) {
+      params = params.append('search',shopParams.search)
+
     }
 
     return this.http.get<IPagination>(this.baseUrl + '/api/products',{observe: 'response',params})
