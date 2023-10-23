@@ -5,3 +5,17 @@
     font-family: 'Roboto', sans-serif;
 
 }
+
+.xng-breadcrumb-root{
+    padding: 8px 16px;
+    display: inline;
+    border-radius: 0;
+    text-decoration: none;
+}
+label.xng-breadcrumb-trail{
+    color: orange;
+    margin-bottom: 0;
+}
+.xng-breadcrumb-separator{
+    padding: 0 0;
+}

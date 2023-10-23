@@ -16,6 +16,8 @@ import { ErrorInterceptor } from './components/Interceptors/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 //import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SectionHeaderComponent } from './components/section-header/section-header.component';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         NavComponent,
         HomeComponent,
         ShopComponent,
-        ProductPageComponent
+        ProductPageComponent,
+        SectionHeaderComponent
     ],
     providers: [
         {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true}
@@ -36,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         HttpClientModule,  
         RouterModule,
         BrowserAnimationsModule,
+        BreadcrumbModule,
         ToastrModule.forRoot({
             positionClass:'toast-bottom-right',
             preventDuplicates:true

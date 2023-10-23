@@ -43,7 +43,11 @@ export class ShopService {
         );
   }
   getProduct(id:number) {
-    return this.http.get<IProduct>(this.baseUrl + `/api/products/${id}` )
+    console.log('called')
+    let productf = this.http.get<IProduct>(this.baseUrl + '/api/products/'+ id)
+     console.log(productf)
+     return productf
+    
   }
   getProductBrands() {
     return this.http.get<IBrand[]>(this.baseUrl +'/productBrand')
