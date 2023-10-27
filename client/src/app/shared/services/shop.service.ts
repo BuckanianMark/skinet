@@ -43,8 +43,8 @@ export class ShopService {
         );
   }
   getProduct(id:number) {
-    console.log('called')
-    let productf = this.http.get<IProduct>(this.baseUrl + '/api/products/'+ id)
+
+    let productf = this.http.get<IProduct>(this.baseUrl + `/api/Products/${id}`)
      console.log(productf)
      return productf
     
