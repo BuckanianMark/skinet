@@ -18,6 +18,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './components/Interceptors/loading.interceptors';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
         SectionHeaderComponent
     ],
     providers: [
-        {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true}
+        {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
+        {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -40,6 +43,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
         RouterModule,
         BrowserAnimationsModule,
         BreadcrumbModule,
+        NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
         ToastrModule.forRoot({
             positionClass:'toast-bottom-right',
             preventDuplicates:true
