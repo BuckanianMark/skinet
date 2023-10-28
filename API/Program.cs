@@ -7,6 +7,7 @@ using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,12 @@ builder.Services.AddDbContext<StoreContext>(options =>
    
 });
 
+builder.Services.AddSingleton<IConnectionMultiplexer>(c => {
+    var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"),
+    true);
+    return ConnectionMultiplexer.Connect(configuration);
+});
+
 builder.Services.AddAutoMapper(typeof(Mappingprofiles));
 
 
@@ -33,6 +40,7 @@ builder.Services.AddAutoMapper(typeof(Mappingprofiles));
 
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.Configure<ApiBehaviorOptions>(options => {
     options.InvalidModelStateResponseFactory = ActionContext => 

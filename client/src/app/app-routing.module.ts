@@ -15,7 +15,10 @@ const routes: Routes = [
   {path:'not-found',component:NotFoundComponent},
   {path:'shop',component:ShopComponent,data:{breadcrumb:'Shop'}},
   {path:'shop/:id',component:ProductPageComponent,data:{breadcrumb:{alias:'productDetails'}}},
-  {path:'**',redirectTo:'not-found',pathMatch:'full'}
+  {path:'basket', loadChildren : () => import('./basket/basket.module').then(mod => mod.BasketModule),data:{breadcrumb:'Basket'}},
+  {path:'**',redirectTo:'not-found',pathMatch:'full'},
+
+
 ];
 
 @NgModule({
