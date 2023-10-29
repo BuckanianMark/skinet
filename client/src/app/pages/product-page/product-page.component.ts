@@ -13,6 +13,7 @@ import { BasketService } from '../../basket/basket.service';
 })
 export class ProductPageComponent implements OnInit{
   product!:IProduct;
+  quantity = 1;
   constructor(private basketService:BasketService,private shopService:ShopService,private activatedRoute:ActivatedRoute,private bcService:BreadcrumbService,){
   this.bcService.set('@productDetails','')
   }
@@ -21,7 +22,14 @@ export class ProductPageComponent implements OnInit{
   }
 
   addItemToBasket(){
-    this.basketService.addItemToBasket(this.product)
+    this.basketService.addItemToBasket(this.product,this.quantity)
+  }
+  incrementQuantity(){
+    this.quantity++;
+  }
+  decrementQuantity(){
+    if(this.quantity > 1) this.quantity--; 
+    
   }
 
   loadProduct(){
@@ -59,5 +67,7 @@ export class ProductPageComponent implements OnInit{
     //   console.log('Product ID is missing in the route');
     // }
   }
+
+
 
 }

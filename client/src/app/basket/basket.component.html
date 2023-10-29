@@ -44,10 +44,13 @@
                             <td class="align-middle md:px-3">
                                 <div class="flex items-center justify-between">
                                     <i 
+                                    (click)="decrementItemQuantity(item)"
                                     class="fa fa-minus-circle cursor-pointer text-[2em] text-green-600" 
                                     ></i>
                                     <span class="font-normal text-[1.5em] ">{{item.quantity}}</span>
-                                    <i class="fa fa-plus-circle cursor-pointer text-[2em] text-red-400" 
+                                    <i 
+                                    (click)="incrementItemQuantity(item)"
+                                    class="fa fa-plus-circle cursor-pointer text-[2em] text-red-400" 
                                     ></i>
                                     
                                 </div>
@@ -55,7 +58,9 @@
                             <td class="align-middle md:px-3 font-semibold text-[#555]">{{item.price * item.quantity | currency}}</td>
                             <td class="align-middle text-center md:px-3">
                                 <a class="text-red-500">
-                                    <i class="fa fa-trash" style="font-size: 2em;"></i>
+                                    <i 
+                                    (click)="removeBasketItem(item)"
+                                    class="fa fa-trash" style="font-size: 2em; cursor: pointer;"></i>
                                 </a>
                             </td>
                         </tr>
@@ -66,7 +71,10 @@
     </div>
 <div class="flex md:flex-row flex-col items-center justify-center">
 <app-order-totals></app-order-totals>
-<a routerLink="/checkout"  class="py-2 ">Proceed to checkout</a>
+<a 
+    href="/checkout"  
+    class="py-2 px-3 hover:bg-[coral] cursor-pointer duration-150 hover:text-white rounded-md text-red-400 font-semibold outline-none border-[1px] border-red-400">
+    Proceed to checkout</a>
 </div>
 
 </div>

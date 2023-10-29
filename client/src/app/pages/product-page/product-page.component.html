@@ -15,10 +15,13 @@
             </p>
             <div class="flex justify-start items-center md:my-[20px] gap-[10px]">
                 <i 
+                (click)="decrementQuantity()"
                 class="fa fa-minus-circle cursor-pointer text-[2em] text-green-600" 
                 ></i>
-                <span class="font-bold text-[1.5em] ">2</span>
-                <i class="fa fa-plus-circle cursor-pointer text-[2em] text-red-400" 
+                <span class="font-bold text-[1.5em] ">{{quantity}}</span>
+                <i 
+                (click)="incrementQuantity()"
+                class="fa fa-plus-circle cursor-pointer text-[2em] text-red-400" 
                 ></i>
                 <button (click)="addItemToBasket()" class="hover:border-[#6734eb] bg-[#6734eb] hover:bg-white duration-150 text-[whitesmoke] outline-none border-2 py-2 px-4 hover:text-gray-600 text-[17px] rounded-md">Add to cart</button>
             </div>
