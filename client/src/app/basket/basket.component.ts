@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { IBasket } from '../shared/models/basket';
 import { BasketService } from './basket.service';
+import { OrderTotalsComponent } from "../common-components/order-totals/order-totals.component";
 
 @Component({
-  selector: 'app-basket',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './basket.component.html',
-  styleUrls: ['./basket.component.css']
+    selector: 'app-basket',
+    standalone: true,
+    templateUrl: './basket.component.html',
+    styleUrls: ['./basket.component.css'],
+    imports: [CommonModule, OrderTotalsComponent]
 })
 export class BasketComponent implements OnInit{
 

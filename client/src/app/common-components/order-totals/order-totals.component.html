@@ -1,23 +1,23 @@
-<div class="bg-[whitesmoke] px-4 py-3 uppercase font-bold">
+<div class="bg-[whitesmoke]  px-4 py-3 uppercase font-bold">
 
     Order Summary
 </div>
-<div class="p-4">
-    <p class="italic">Shippng cost will be added depending on choices made during checkout</p>
-    <ul class="mb-4" *ngIf="(basketTotal$ | async) as totals">
-        <li class="flex justify-between py-3 border-b-2">
+<div class="p-4 flex flex-col justify-center items-center">
+    <p class="italic  ">Shippng cost will be added depending on choices made during checkout</p>
+    <ul class="mb-4 mt-3 flex flex-col justify-center " *ngIf="(basketTotal$ | async) as totals">
+        <li class="flex justify-between  items-center gap-[50px] py-3 border-b-2">
             <strong>Order Subtotal</strong>
-            <strong>{{totals.subTotal}}</strong>
+            <strong class="text-gray-700">{{totals.subTotal | currency}}</strong>
         
         </li>
-        <li class="flex justify-between py-3 border-b-2">
+        <li class="flex justify-between  gap-[50px] py-3 border-b-2">
             <strong>Shipping and Handling</strong>
-            <strong>{{totals.shipping}}</strong>
+            <strong class="text-gray-700">{{totals.shipping | currency}}</strong>
         
         </li>
-        <li class="flex justify-between py-3 border-b-2">
+        <li class="flex justify-between  gap-[50px] py-3 border-b-2">
             <strong>Total</strong>
-            <strong>{{totals.total}}</strong>
+            <strong class="text-gray-700">{{totals.total | currency}}</strong>
         
         </li>
     </ul>

@@ -7,11 +7,11 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    OrderTotalsComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    OrderTotalsComponent
   ],
   exports:[
     OrderTotalsComponent
