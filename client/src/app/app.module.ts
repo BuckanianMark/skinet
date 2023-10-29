@@ -20,6 +20,8 @@ import { SectionHeaderComponent } from './components/section-header/section-head
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './components/Interceptors/loading.interceptors';
+//import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
+import { BasketModule } from './basket/basket.module';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { LoadingInterceptor } from './components/Interceptors/loading.intercepto
         HomeComponent,
         ShopComponent,
         ProductPageComponent,
-        SectionHeaderComponent
+        SectionHeaderComponent,
+        
     ],
     providers: [
         {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
@@ -40,6 +43,7 @@ import { LoadingInterceptor } from './components/Interceptors/loading.intercepto
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,  
+        BasketModule,
         RouterModule,
         BrowserAnimationsModule,
         BreadcrumbModule,
@@ -48,6 +52,7 @@ import { LoadingInterceptor } from './components/Interceptors/loading.intercepto
             positionClass:'toast-bottom-right',
             preventDuplicates:true
         })
-    ]
+    ],
+   
 })
 export class AppModule { }

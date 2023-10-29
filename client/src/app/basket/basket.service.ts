@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { enviroment } from '../../enviroments/enviroment';
-import { Basket, IBasket, IBasketItem } from '../shared/models/basket';
+import { Basket, IBasket, IBasketItem, IBasketTotals } from '../shared/models/basket';
 import { map } from 'rxjs/operators';
 import { IProduct } from '../shared/models/products';
 import {v4 as uuidv4} from 'uuid';
@@ -17,10 +17,16 @@ export class BasketService {
       items:[]
     
    };
+   initialTotals = {
+    shipping:0,
+    subTotal:0,
+    total:0
+   }
   private basketSource = new BehaviorSubject<Basket>(this.initialBasket);
   basket$ = this.basketSource.asObservable();
   baseUrl = enviroment.apiUrl;
-
+  private basketTotalSource = new BehaviorSubject<IBasketTotals>(this.initialTotals);
+   basketTotals$ = this.basketTotalSource.asObservable();
 
   constructor(private http:HttpClient) { }
 
@@ -29,7 +35,7 @@ export class BasketService {
     .pipe(
       map((basket) => {
         this.basketSource.next(basket as IBasket)
-        console.log(this.getCurrentBasketValue());
+        this.calculateTotals();
       })
     );
 
@@ -38,9 +44,9 @@ export class BasketService {
   setBasket(basket:IBasket){
     return this.http.post(this.baseUrl + '/api/Basket',basket).subscribe((response) => {
       this.basketSource.next(response as IBasket)
+      this.calculateTotals();
       //will solve below error
       localStorage.setItem('basket_id',basket.id);
-      console.log(basket)
     },error => {
       console.log(error)
     })
@@ -57,6 +63,13 @@ export class BasketService {
     this.setBasket(basket)
   }
 
+  private calculateTotals(){
+    const basket = this.getCurrentBasketValue();
+    const shipping = 0;
+    const subTotal = basket.items.reduce((a,b) =>(b.price) + a,0)
+    const total = shipping + subTotal;
+    this.basketTotalSource.next({shipping,total,subTotal})
+  }
   
   private addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
     const index = items.findIndex(i => i.id === itemToAdd.id);
