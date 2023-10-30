@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
+using Core.Entities.Identity;
+using API.Extensions;
+using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +30,11 @@ builder.Services.AddDbContext<StoreContext>(options =>
    
 });
 
+builder.Services.AddDbContext<AppIdentityDbContext>(options => 
+{
+   options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection"));
+});
+
 builder.Services.AddSingleton<IConnectionMultiplexer>(c => {
     var configuration = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"),
     true);
@@ -34,11 +44,13 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(c => {
 builder.Services.AddAutoMapper(typeof(Mappingprofiles));
 
 
+builder.Services.AddIdentityServices(builder.Configuration);
+
+//seeding data
 
 
 
-
-
+builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
@@ -71,6 +83,14 @@ using (var scope = app.Services.CreateScope()){
         var context = services.GetRequiredService<StoreContext>();
         await context.Database.MigrateAsync();
         await StoreContextSeed.SeedAsync(context, loggerFactory);
+
+        // var userManager = builder.Services.GetRequiredService<UserManager<AppUser>>();
+        // var identityContext = builder.Services.GetRequiredService<AppIdentityDbContext>();
+        // identityContext.Database.MigrateAsync();
+        // AppIdentityDbContext.SeedUsersAsync(userManager);
+
+
+
     }catch(Exception ex)
     {
         var logger = loggerFactory.CreateLogger<Program>();
@@ -104,6 +124,8 @@ app.UseCors(options =>
 });
 
  app.UseStaticFiles();
+
+ app.UseAuthentication();
 
 app.UseAuthorization();
 
