@@ -12,7 +12,7 @@ namespace Core.Entities.OrderAgregate
         {
         }
 
-        public Order(Address shipToAdress, decimal subtotal,string buyerEmail,IReadOnlyList<OrderItem> orderItems,OrderStatus orderStatus,DeliveryMethod deliveryMethod)
+        public Order(Address shipToAdress, decimal subtotal,string buyerEmail,IReadOnlyList<OrderItem> orderItems,DeliveryMethod deliveryMethod)
         {
             BuyerEmail = buyerEmail;
             ShipToAddress = shipToAdress;

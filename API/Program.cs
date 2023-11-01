@@ -48,6 +48,8 @@ builder.Services.AddIdentityServices(builder.Configuration);
 
 //seeding data
 
+//unit of work service
+builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 
 builder.Services.AddScoped<IOrderService,OrderService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
