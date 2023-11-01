@@ -1,0 +1,35 @@
+.mydiv{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 10px ;
+}
+.mydiv input{
+    background-color: #cee;
+    padding: 2px 5px;
+    border-radius: 2px;
+    outline: none;
+}
+.mydiv label{
+    color: #444 ;
+    font-weight: 500;
+    font-family:monospace;
+    font-size: 18px;
+}
+#container{
+    background-size: contain;
+    background-position: center;
+    background-image: url('../../../assets/Bckground.png');
+}
+button{
+    font-family:monospace;
+    font-size: 18px;
+}
+.loader{
+    position: absolute;
+    width: auto;
+    top: 15px;
+    right: 10px;
+    margin-top: 0;
+}

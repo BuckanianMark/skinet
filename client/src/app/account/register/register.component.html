@@ -1,0 +1,92 @@
+
+<div id="container" class="flex justify-center items-center flex-col mt-5 ">
+    <div class="px-[50px]  py-[20px] bg-[whitesmoke] rounded-sm">
+        <h1 class="text-[19px] text-gray-700 uppercase font-semibold text-center ">Register</h1>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <!-- <app-text-input formControlName="email" [label]="Email Address"></app-text-input> -->
+        
+            <div class="mydiv">
+                <label>Email Address</label>
+           
+                <input 
+                formControlName="email"
+                type="email"
+                type="text" 
+                placeholder="Enter your email..">
+
+                <div *ngIf=" registerForm.get('email')?.status === 'PENDING'" class="fa fa-spinner fa-spin loader">
+                    <span
+                    class="text-red-400 flex-wrap font-mono"
+                    *ngIf="
+                    registerForm.get('email')?.invalid && 
+                    registerForm.get('email')?.touched &&
+                    registerForm.get('email')?.errors?.['required']"
+    
+                   > *Email address is required</span>
+                   <span
+                   class="text-red-400 font-mono"
+                   *ngIf="registerForm.get('email')?.errors?.['pattern']">
+                   *Email is not valid
+                   </span>
+                </div>
+             
+               <span
+               class="text-red-400 font-mono flex-wrap"
+               *ngIf="registerForm.get('email')?.errors?.['emailExists']">
+               *Email already in use
+               </span>
+            </div>
+            
+            <div class="mydiv">
+                <label>Display Name</label>
+           
+                <input 
+                formControlName="displayName"
+                type="displayName" 
+                placeholder="Enter a display name ">
+                <span
+                class="text-red-400 font-mono"
+                *ngIf="registerForm.get('displayName')?.invalid && 
+                registerForm.get('displayName')?.touched &&
+                registerForm.get('displayName')?.errors?.['required']"
+
+               > *Display name is required</span>
+             
+            </div>
+            <div class="mydiv">
+                <label>Password</label>
+                <input 
+                formControlName="password"
+                type="password"
+                placeholder="Enter your password..">
+                <span
+                class="text-red-400 font-mono"
+                *ngIf="registerForm.get('password')?.invalid && 
+                registerForm.get('password')?.touched &&
+                registerForm.get('password')?.errors?.['required']"
+
+               > Password is required</span>
+              
+            </div>
+            <ul class="text-red-400 flex-wrap" *ngIf="errors">
+                <li *ngFor="let error of errors">
+                    *{{error}}
+                </li>
+            </ul>
+            <div class="mt-6">
+                <button 
+                type="submit"
+               
+                class="bg-[#6734eb] rounded-md text-white mx-[5px] px-[25px] py-[2px]">
+                Register</button>
+            </div>
+        </form>
+    </div>
+ 
+
+    <div class="text-gray-700">
+        Already have an account?<a href="/register"class=" underline font-bold"> Login</a>
+    </div>
+
+</div>
+

@@ -1,0 +1,57 @@
+
+<div id="container" class="flex justify-center items-center flex-col mt-5 ">
+    <div class="px-[50px]  py-[20px] bg-[whitesmoke] rounded-sm">
+        <h1 class="text-[19px] text-gray-700 uppercase font-semibold text-center ">Login</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- <app-text-input formControlName="email" [label]="Email Address"></app-text-input> -->
+            <div class="mydiv">
+                <label>Email Address</label>
+           
+                <input 
+                formControlName="email"
+                type="email"
+                type="text" 
+                placeholder="Enter your email..">
+                <span
+                class="text-red-400 font-mono"
+                *ngIf="loginForm.get('email')?.invalid && 
+                loginForm.get('email')?.touched &&
+                loginForm.get('email')?.errors?.['required']"
+
+               > *Email address is required</span>
+               <span
+               class="text-red-400 font-mono"
+               *ngIf="loginForm.get('email')?.errors?.['pattern']">
+               Email is not valid
+               </span>
+            </div>
+            <div class="mydiv">
+                <label>Password</label>
+                <input 
+                formControlName="password"
+                type="password"
+                placeholder="Enter your password..">
+                <span
+                class="text-red-400 font-mono"
+                *ngIf="loginForm.get('password')?.invalid && 
+                loginForm.get('password')?.touched &&
+                loginForm.get('password')?.errors?.['required']"
+
+               > Password is required</span>
+              
+            </div>
+            <div class="mt-6">
+                <button 
+                type="submit"
+                [disabled]="loginForm.invalid"
+                class="bg-[#6734eb] rounded-md text-white mx-[5px] px-[25px] py-[2px]">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-gray-700">
+        Dont have an account?<a href="/register"class=" underline font-bold"> register</a>
+    </div>
+
+</div>
+

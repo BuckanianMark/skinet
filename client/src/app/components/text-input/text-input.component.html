@@ -1,0 +1,18 @@
+<!-- <div class="mydiv">
+    <label for="{{label}}">{{label}}</label>
+
+    <input 
+    [ngClass]="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid' : 'is-valid : null'"]
+   (input)="onChange($event.target.value)"
+    [type]="type"
+   (blur)="onTouched"
+   id="{{label}}"
+   #input
+    placeholder="{{label}}"
+    >
+
+    <div class="invalid-feedback" **ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched)">
+        <span *ngIf="controlDir.control.errors?.required">{{label}}  is required</span>
+        <span *ngIf="controlDir.control.errors?.pattern">Invalid Email address </span>
+    </div>
+</div> -->

@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between px-[15px] py-[8px] ">
+<div id="container" class="flex items-center justify-between px-[15px] pt-[12px] ">
     <div>
         <h1 class="text-[#6734eb] text-3xl font-bold" routerLink="/">BuckNet</h1>
     </div>
@@ -15,16 +15,46 @@
             
         </span>
         
-                <div class="md:flex items-center relative">
-                    <a routerLink="/basket" class="flex items-center justify-center md:mr-4">
+                <div class="md:flex items-center justify-between h-[100%]">
+                    <a routerLink="/basket" class="flex items-center justify-center md:mr-4 relative">
                         <i class="fa fa-shopping-cart mr-4 text-gray-800 fa-2x"></i>
                         <div 
                         *ngIf="(basket$ | async) as basket"
                         class="w-[12px] h-[12px]  p-3 flex items-center justify-center rounded-full bg-[#6060cc] text-white absolute top-0 ml-[10px]">
-                        {{basket.items.length}}</div>
+                        {{basket.items.length}}
+                    </div>
                     </a>
-                    <a class="outline-none text-[#3b3b3d] bg-[whitesmoke] py-[2px] px-[8px] border-2 rounded-md   hover:bg-[whitesmoke] duration-200 hover:text-[#6734eb] mr-[8px] cursor-pointer">login</a>
-                    <a class="outline-none text-[#6734eb] bg-[whitesmoke] py-[2px] px-[8px] border-2 rounded-md  border-[#6734eb] hover:bg-[#6734eb] duration-200 hover:text-white cursor-pointer">Sign Up</a>
+                
+                 <div  *ngIf="(currentUser$ | async) as currentUser">
+                    <div  class=" flex items-center justify-between gap-2" *ngIf="currentUser.token">
+                        <div class="flex w-[120px] flex-col items-center justify-center" id="dropdowntoggle" >
+                           
+                                <a class="text-gray-800 flex items-center  text-[17px]" id="welcome">Hello <p class="text-gray-700 ml-[1px] font-semibold"> {{ currentUser.displayName }}</p><img src="../../../assets/smileyface.png" alt="null" style="width: 50px;">
+                                </a>
+
+                         
+
+                            <div id="dropdown" >
+                                <a routerLink="/orders" class="bg-[whitesmoke] items-center px-2 py-1 flex">
+                                    <i class="fa fa-history mr-2 text-[#6734eb]"></i>
+                                    Orders</a>
+                                <a routerLink="/basket" class="bg-[whitesmoke] px-2 py-1 items-center flex">
+                                    <i class="fa fa-shopping-cart mr-2 text-[#6734eb]"></i>
+                                    Basket</a>
+                            </div>
+                        </div>  
+                        <a (click)="logOut()" class="outline-none flex items-center h-[30px] text-[#6734eb] bg-[whitesmoke] py-[2px] px-[8px] border-2 rounded-md  border-[#6734eb] hover:bg-[#6734eb] duration-200 hover:text-white cursor-pointer">
+                            <i class="fa fa-sign-out mr-3"></i>
+                            Log out</a>
+                          
+                    </div>
+
+                    <ng-container  *ngIf="!currentUser.token">
+                        <a routerLink="/account/login" class="outline-none text-[#3b3b3d] bg-[whitesmoke] py-[2px] px-[8px] border-2 rounded-md   hover:bg-[whitesmoke] duration-200 hover:text-[#6734eb] mr-[8px] cursor-pointer">login</a>
+                        <a routerLink="/account/register" class="outline-none text-[#6734eb] bg-[whitesmoke] py-[2px] px-[8px] border-2 rounded-md  border-[#6734eb] hover:bg-[#6734eb] duration-200 hover:text-white cursor-pointer">Sign Up</a>
+                        
+                    </ng-container>
+                </div>
                 </div>
             
                 

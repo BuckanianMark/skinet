@@ -2,6 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BasketService } from '../../basket/basket.service';
 import { IBasket } from '../../shared/models/basket';
+import { IUser } from '../../shared/models/user';
+import { AccountService } from '../../account/account.service';
 //import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,9 +13,18 @@ import { IBasket } from '../../shared/models/basket';
 })
 export class NavComponent implements OnInit{
   basket$!: Observable<IBasket>;
-  constructor(private basketService:BasketService){}
+  currentUser$!:Observable<IUser>;
+  constructor(
+    private basketService:BasketService,
+    private accountService:AccountService
+    ){}
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
+    this.currentUser$ = this.accountService.currentUser$;
+  }
+
+  logOut(){
+    this.accountService.logOut()
   }
 
 }

@@ -22,6 +22,10 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './components/Interceptors/loading.interceptors';
 //import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
 import { BasketModule } from './basket/basket.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './account/login/login.component';
+import { TextInputComponent } from './components/text-input/text-input.component';
+import { RegisterComponent } from './account/register/register.component';
 
 
 @NgModule({
@@ -32,6 +36,8 @@ import { BasketModule } from './basket/basket.module';
         ShopComponent,
         ProductPageComponent,
         SectionHeaderComponent,
+        LoginComponent,
+        RegisterComponent
         
     ],
     providers: [
@@ -46,6 +52,7 @@ import { BasketModule } from './basket/basket.module';
         BasketModule,
         RouterModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         BreadcrumbModule,
         NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
         ToastrModule.forRoot({

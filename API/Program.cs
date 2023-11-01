@@ -49,7 +49,7 @@ builder.Services.AddIdentityServices(builder.Configuration);
 //seeding data
 
 
-
+builder.Services.AddScoped<IOrderService,OrderService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
@@ -100,6 +100,7 @@ using (var scope = app.Services.CreateScope()){
 
 
 // Configure the HTTP request pipeline.
+
 
 
 if (app.Environment.IsDevelopment())
