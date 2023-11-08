@@ -31,39 +31,33 @@ namespace Infrastructure.Identity.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AppUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ZipCode")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[AppUserId] IS NOT NULL");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("Core.Entities.Identity.AppUser", b =>
@@ -272,9 +266,7 @@ namespace Infrastructure.Identity.Migrations
                 {
                     b.HasOne("Core.Entities.Identity.AppUser", "AppUser")
                         .WithOne("Address")
-                        .HasForeignKey("Core.Entities.Identity.Address", "AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Core.Entities.Identity.Address", "AppUserId");
 
                     b.Navigation("AppUser");
                 });

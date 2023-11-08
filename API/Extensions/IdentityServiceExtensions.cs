@@ -36,7 +36,7 @@ namespace API.Extensions
                         ValidateAudience = false
                     };
                 });
-            
+            services.AddAuthorization();
             return services;
         }
     }

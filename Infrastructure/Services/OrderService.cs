@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Core.Entities;
 using Core.Entities.OrderAgregate;
 using Core.Interfaces;
+using Core.Specifications;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Infrastructure.Services
 {
@@ -39,32 +41,49 @@ namespace Infrastructure.Services
             //calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
             //create order
-            var order = new Order(shippingAddress,subtotal,buyerEmail,items,deliveryMethod);
-            
-            _unitofwork.Repository<Order>().Add(order);
-            //save to db
-            var result = await _unitofwork.Complete();
-            if(result <= 0) return null;
+            //check order alreadey exists
+             var spec = new OrderByPaymentIntentIdSpecification(basket.PaymentIntentId);
+             var order = await _unitofwork.Repository<Order>().GetEntityWithSpec(spec);
+            if(order != null)
+            {
+                order.ShipToAddress = shippingAddress;
+                 order.ShipToAddress = shippingAddress;
+                order.DeliveryMethod = deliveryMethod;
+                order.Subtotal = subtotal;
+                _unitofwork.Repository<Order>().Update(order);
+            }
+            else 
+            {
+                order = new Order(items,buyerEmail,shippingAddress,deliveryMethod,subtotal,basket.PaymentIntentId);
+                _unitofwork.Repository<Order>().Add(order);
+            }
 
-            //if successful you need to delete basket
-            await _basketRepo.DeleteBasketAsync(basketId);
+            // //if successful you need to delete basket
+            // await _basketRepo.DeleteBasketAsync(basketId);
+
+            var result = await _unitofwork.Complete();
+            if (result <= 0) return null;
 
             return order;
         }
 
         public Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync()
         {
-            throw new NotImplementedException();
+            return _unitofwork.Repository<DeliveryMethod>().ListAllAsync();
         }
 
-        public Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
+        public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
         {
-            throw new NotImplementedException();
+            var spec = new OrdersWithItemAndOrderingSpecifications(id,buyerEmail);
+            return await _unitofwork.Repository<Order>().GetEntityWithSpec(spec);
         }
 
-        public Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)
+        public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)
         {
-            throw new NotImplementedException();
+           var spec = new OrdersWithItemAndOrderingSpecifications(buyerEmail );
+
+           return await _unitofwork.Repository<Order>().ListAsync(spec);
+
         }
     }
 }

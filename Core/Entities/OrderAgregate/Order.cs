@@ -8,21 +8,23 @@ namespace Core.Entities.OrderAgregate
 {
     public class Order : BaseEntity
     {
-        public Order()
+          public Order()
         {
         }
-
-        public Order(Address shipToAdress, decimal subtotal,string buyerEmail,IReadOnlyList<OrderItem> orderItems,DeliveryMethod deliveryMethod)
+        public Order(IReadOnlyList<OrderItem> orderItems, string buyerEmail, Address shipToAddress, 
+            DeliveryMethod deliveryMethod, decimal subtotal, string paymentIntentId)
         {
             BuyerEmail = buyerEmail;
-            ShipToAddress = shipToAdress;
-            Subtotal = subtotal;
+            ShipToAddress = shipToAddress;
             DeliveryMethod = deliveryMethod;
             OrderItems = orderItems;
+            Subtotal = subtotal;
+            PaymentIntentId = paymentIntentId;
         }
 
+
         public string BuyerEmail { get; set; }
-        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
         public Address ShipToAddress{ get; set; }
         public DeliveryMethod DeliveryMethod { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }

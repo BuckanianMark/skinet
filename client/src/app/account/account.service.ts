@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { enviroment } from '../../enviroments/enviroment';
-import { IUser } from '../shared/models/user';
+import { Address, IUser } from '../shared/models/user';
 import { BehaviorSubject, ReplaySubject, of} from 'rxjs';
 import {  map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -50,7 +50,7 @@ export class AccountService {
     return this.http.post(this.baseUrl + '/api/Account/login',values).pipe(
       map((user: IUser | any) => {
         if(user) {
-          localStorage.setItem('token',user.token);
+          localStorage.setItem('token', user.token);
           this.currentUserSource.next(user);
         }
       })
@@ -74,6 +74,14 @@ export class AccountService {
     this.router.navigateByUrl('/');
   }
   checkEmailExists(email:string){
-    return this.http.get(this.baseUrl + '/api/account/emailexists?email=' + email);
+    return this.http.get(this.baseUrl + '/api/Account/emailexists?email=' + email);
+  }
+
+  getUsersAddress(){
+    return this.http.get<Address>(this.baseUrl + '/api/Account/address');
+  }
+  
+  updateUserAddress(address: Address) {
+    return this.http.put(this.baseUrl + '/api/Account/address', address);
   }
 }

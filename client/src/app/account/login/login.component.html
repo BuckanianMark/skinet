@@ -1,7 +1,7 @@
 
 <div id="container" class="flex justify-center items-center flex-col mt-5 ">
     <div class="px-[50px]  py-[20px] bg-[whitesmoke] rounded-sm">
-        <h1 class="text-[19px] text-gray-700 uppercase font-semibold text-center ">Login</h1>
+        <h1 class="text-[19px] text-gray-700 uppercase  font-semibold text-center ">Login</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <!-- <app-text-input formControlName="email" [label]="Email Address"></app-text-input> -->
             <div class="mydiv">
@@ -9,35 +9,44 @@
            
                 <input 
                 formControlName="email"
+                class="placeholder:font-mono placeholder:text-gray-400"
                 type="email"
                 type="text" 
                 placeholder="Enter your email..">
+                <i class="fa fa-mail"></i>
                 <span
-                class="text-red-400 font-mono"
+                id="emailerror"
+                class="text-red-400  text-[14px] font-mono "
                 *ngIf="loginForm.get('email')?.invalid && 
                 loginForm.get('email')?.touched &&
                 loginForm.get('email')?.errors?.['required']"
 
                > *Email address is required</span>
                <span
-               class="text-red-400 font-mono"
+               id="emailerror"
+               class="text-red-400 text-[14px]  font-mono"
                *ngIf="loginForm.get('email')?.errors?.['pattern']">
-               Email is not valid
+               *Email is not valid
                </span>
             </div>
             <div class="mydiv">
                 <label>Password</label>
                 <input 
+                class="py-2  font-mono text-gray-800 placeholder:font-mono placeholder:text-gray-400"
+
                 formControlName="password"
                 type="password"
                 placeholder="Enter your password..">
-                <span
-                class="text-red-400 font-mono"
+                <i *ngIf="loginForm.get('password')?.untouched" class="fa fa-lock text-gray-700 fa-2x "></i>
+                <i *ngIf="loginForm.get('password')?.touched" class="fa fa-check text-gray-700 fa-2x"></i>
+                
+                <span id="error"
+                class="text-red-400 text-[14px] font-mono"
                 *ngIf="loginForm.get('password')?.invalid && 
                 loginForm.get('password')?.touched &&
                 loginForm.get('password')?.errors?.['required']"
 
-               > Password is required</span>
+               > *Password is required</span>
               
             </div>
             <div class="mt-6">

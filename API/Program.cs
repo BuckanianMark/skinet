@@ -46,6 +46,8 @@ builder.Services.AddAutoMapper(typeof(Mappingprofiles));
 
 builder.Services.AddIdentityServices(builder.Configuration);
 
+builder.Services.AddSwaggerDocumentation();
+
 //seeding data
 
 //unit of work service

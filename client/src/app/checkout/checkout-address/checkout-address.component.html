@@ -1,0 +1,67 @@
+<div class="mt-4 flex justify-center  flex-col" [formGroup]="checkoutForm">
+    <div class="flex justify-evenly items-center">
+        <h4 class="text-gray-600 font-[600] uppercase">Shipping address</h4>
+        <button class="py-1 px-4 border-2 rounded-lg font-semibold border-green-300 shadow-sm text-green-300 hover:text-gray-700 hover:bg-green-300"
+           
+        >
+            Save as default address <i class="fa fa-check"></i>
+        </button>
+    </div>
+    
+    <div class="grid grid-cols-2 mx-10 my-5" formGroupName="addressForm">
+    <div class="labelinputcontainer">
+            <label class="label">First Name</label>
+            <input class="input" type="text" formControlName="firstName">
+     </div>
+     <div class="labelinputcontainer">
+        <label class="label">Last Name</label>
+        <input class="input" type="text" formControlName="lastName">
+    </div>
+    <div class="labelinputcontainer">
+        <label class="label">Street</label>
+        <input class="input" type="text" formControlName="street">
+    </div>
+    <div class="labelinputcontainer">
+        <label class="label">City</label>
+        <input class="input" type="text" formControlName="city">
+    </div>
+    <div class="labelinputcontainer">
+        <label class="label">State</label>
+        <input class="input" type="text" formControlName="state">
+    </div>
+    <div class="labelinputcontainer">
+        <label class="label">Zipcode</label>
+        <input class="input" type="text" formControlName="zipcode">
+    </div>
+    </div>
+    <!-- <div class="row" formGroupName="addressForm">
+        <div class="form-group col-6">
+            <app-text-input [label]="'First name'" formControlName="firstName"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Last name'" formControlName="lastName"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Street'" formControlName="street"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'City'" formControlName="city"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'State'" formControlName="state"></app-text-input>
+        </div>
+        <div class="form-group col-6">
+            <app-text-input [label]="'Zip code'" formControlName="zipcode"></app-text-input>
+        </div>
+    </div> -->
+</div>
+
+
+<div class="nextprevcontainer">
+    <button class="previousbtn" routerLink="/basket">
+        <i class="fa fa-angle-left"></i> Back to basket 
+    </button>
+    <button  class="nextbutton" cdkStepperNext>
+        Go to Delivery <i class="fa fa-angle-right"></i> 
+    </button>
+</div>

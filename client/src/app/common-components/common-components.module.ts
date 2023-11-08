@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderTotalsComponent } from './order-totals/order-totals.component';
 import { RouterModule } from '@angular/router';
+import { BasketSummaryComponent } from './basket-summary/basket-summary.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    OrderTotalsComponent
+    OrderTotalsComponent,
+    BasketSummaryComponent
   ],
   exports:[
     OrderTotalsComponent

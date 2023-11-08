@@ -1,0 +1,26 @@
+<div class="mt-4" [formGroup]="checkoutForm">
+<div formGroupName="deliveryForm">
+    <div *ngFor="let method of deliveryMethod">
+        <input 
+        type="radio"
+        (click)="setShippingPrice(method)"
+        id={{method.id}}
+        value={{method.id}}
+        formControlName=" deliveryMethod">
+        <label for="{{method.id}}">
+            <strong>{{method.shortName}} - {{method.price | currency}}</strong>
+            <br>
+            <span>{{method.description}}</span>
+        </label>
+    </div>
+</div>
+<div class="nextprevcontainer">
+    <button cdkStepperPrevious class="previousbtn">
+        <p>back</p><i class="fa fa-angle-left text-[16px] font-semibold text-gray-700"></i>
+    </button>
+    <button cdkStepperNext class="nextbutton">
+
+    </button>
+
+</div>
+</div>

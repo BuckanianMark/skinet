@@ -1,0 +1,19 @@
+<div id="container" class="mx-auto">
+    <ul class="flex justify-center space-x-4" >
+        <li class="nav-item px-10 rounded-sm" *ngFor="let step of steps; let i = index">
+            <div class="card grid rounded-lg">
+                <button 
+                    (click)="onClick(i)"              
+                    [class.active]="selectedIndex === i"
+                    class="nav-link rounded-lg py-3 uppercase font-bold">
+                    {{step.label}} : {{step.completed}}
+                </button>
+            </div>
+        </li>
+    </ul>
+    <div *ngIf="selected">
+        <ng-container [ngTemplateOutlet]="selected.content">
+
+        </ng-container>
+    </div>
+</div>

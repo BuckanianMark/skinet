@@ -6,12 +6,14 @@ import { Basket, IBasket, IBasketItem, IBasketTotals } from '../shared/models/ba
 import { map } from 'rxjs/operators';
 import { IProduct } from '../shared/models/products';
 import {v4 as uuidv4} from 'uuid';
+import { DeliveryMethod } from '../shared/models/deliveryMethod';
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
 
 
+  shipping = 0;
    initialBasket= {
       id:uuidv4(),
       items:[]
@@ -29,6 +31,10 @@ export class BasketService {
    basketTotals$ = this.basketTotalSource.asObservable();
 
   constructor(private http:HttpClient) { }
+
+  setShippingPrice(deliveryMethod:DeliveryMethod){
+    this.shipping = deliveryMethod.price;
+  }
 
   getBasket(id:string){
     return this.http.get(this.baseUrl + '/api/basket?id=' + id)
@@ -102,7 +108,7 @@ export class BasketService {
 
   private calculateTotals(){
     const basket = this.getCurrentBasketValue();
-    const shipping = 0;
+    const shipping = this.shipping;
     const subTotal = basket.items.reduce((a,b) =>(b.price * b.quantity) + a, 0)
     const total = shipping + subTotal;
     this.basketTotalSource.next({shipping,total,subTotal})
@@ -135,6 +141,11 @@ export class BasketService {
     brand:item.productBrand,
     type:item.productType
    }
+  }
+  deleteLocalBasket(){
+    this.basketSource.next(this.initialBasket);
+    this.basketTotalSource.next(this.initialTotals)
+    localStorage.removeItem('basket_id')
   }
 
 }

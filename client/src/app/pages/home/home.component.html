@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="flex flex-row items-start justify-evenly ml-[20px] pl-12">
+    <span>
+        <h1 class="md:text-[25px] font-mono font-semibold text-17px opacity-70 text-[#6734eb]">Welcome To BuckNet</h1>
+        <h2 class="md:text-[22px] text-16px font-semibold font-mono text-gray-500">Think Clothes Think Bucknet</h2>
+    </span>
+    <span>
+        <h1 class="md:text-[22px] text-16px font-semibold flex items-center  font-mono text-gray-500">Hello There
+             <img src="../../../assets/smileyface.png" class="w-[70px]"></h1>
+    </span>
+
+</div>
+<ul class="w-screen h-auto flex gap-6 items-center justify-center flex-wrap px-12 py-10 object-contain">
+    <li *ngFor="let product of products" class="relative bg-slate-300 md:w-[400px] md:h-[400px] object-contain rounded-[20px] overflow-hidden">
+        <img src="{{product.image}}" class="w-[100%] md:h-[400px] object-fit">
+     
+        <button class="absolute right-0 mb-[10px] bg-purple-200 md:text-[20px] text-[#6734eb] py-2 px-4 rounded-lg font-bold mr-[10px] bottom-0 ">{{product.button}}</button>
+    </li>
+</ul>
+<div></div>

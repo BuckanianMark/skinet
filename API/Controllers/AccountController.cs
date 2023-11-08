@@ -47,7 +47,10 @@ namespace API.Controllers
                 Token = _tokenService.CreateToken(user),
                 DisplayName = user.DisplayName
             };
+
          }
+
+
         [HttpGet("emailexists")]
         public async Task<ActionResult<bool>> CheckemailExistsAsync([FromQuery] string email)
         {
@@ -61,22 +64,9 @@ namespace API.Controllers
             var user = await _userManager.FindByEmailWithAddressAsync(HttpContext.User);
 
             return _mapper.Map<Address, AddressDto>(user.Address);
+         
         }
-        [Authorize]
-        [HttpPut("address")]
-        public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto address)
-        {
-            var user = await _userManager.FindByEmailClaimsPrinciple(HttpContext.User);
-
-            user.Address = _mapper.Map<AddressDto, Address>(address);
-
-            var result = await _userManager.UpdateAsync(user);
-
-            if(result.Succeeded) return Ok(_mapper.Map<Address,AddressDto>(user.Address));
-
-            return BadRequest("Problem updating the user");
-        }
-
+        
         [HttpPost("login")]
 
         public async Task<ActionResult<UserDto>> login(LoginDto loginDto) 
@@ -95,6 +85,9 @@ namespace API.Controllers
                 DisplayName = user.DisplayName
             };
         }
+
+        
+     
 
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto
@@ -126,6 +119,20 @@ namespace API.Controllers
             };
         }
        
-        
+          [Authorize]
+        [HttpPut("address")]
+        public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto address)
+        {
+            var user = await _userManager.FindByEmailClaimsPrinciple(HttpContext.User);
+
+            user.Address = _mapper.Map<AddressDto, Address>(address);
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if(result.Succeeded) return Ok(_mapper.Map<Address,AddressDto>(user.Address));
+
+            return BadRequest("Problem updating the user");
+        }
     }
+     
 }

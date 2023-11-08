@@ -4,11 +4,17 @@
     align-items: start;
     justify-content: center;
     padding: 10px ;
+    gap: 10px;
+    position: relative;
+}
+h1{
+    letter-spacing: 1px;
 }
 .mydiv input{
     background-color: #cee;
     padding: 2px 5px;
-    border-radius: 2px;
+    border-radius: 10px;
+    width: 280px;
     outline: none;
 }
 .mydiv label{
@@ -25,4 +31,29 @@
 button{
     font-family:monospace;
     font-size: 18px;
+}
+#error{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 15px;
+}
+#emailerror{
+    position: absolute;
+    bottom: 0;   
+}
+.fa-lock{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 16px ;
+    font-size: 17px;
+    margin-right: 20px;
+}
+.fa-check{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 16px ;
+    font-size: 17px;
+    margin-right: 20px;
 }

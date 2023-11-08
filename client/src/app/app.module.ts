@@ -24,9 +24,13 @@ import { LoadingInterceptor } from './components/Interceptors/loading.intercepto
 import { BasketModule } from './basket/basket.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './account/login/login.component';
-import { TextInputComponent } from './components/text-input/text-input.component';
+//import { TextInputComponent } from './components/text-input/text-input.component';
 import { RegisterComponent } from './account/register/register.component';
-
+//import { CdkStepperModule } from '@angular/cdk/stepper';
+//import { StepperComponent } from './components/stepper/stepper.component';
+//import { CheckoutModule } from './checkout/checkout.module';
+import { JwtInterceptor } from './components/Interceptors/jwt.interceptor';
+//import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 
 @NgModule({
     declarations: [
@@ -37,13 +41,12 @@ import { RegisterComponent } from './account/register/register.component';
         ProductPageComponent,
         SectionHeaderComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+     
+        
         
     ],
-    providers: [
-        {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
-        {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
-    ],
+    
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -60,6 +63,11 @@ import { RegisterComponent } from './account/register/register.component';
             preventDuplicates:true
         })
     ],
+    providers: [
+        {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
+        {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},
+        {provide:HTTP_INTERCEPTORS,useClass:JwtInterceptor,multi:true}
+    ]
    
 })
 export class AppModule { }

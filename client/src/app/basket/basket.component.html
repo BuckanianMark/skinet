@@ -6,67 +6,11 @@
 
     <div class="pb-5">
         <div>
-            <div class="flex items-center justify-center">
-                <table class="">
-                    <thead>
-                        <tr class="bg-[whitesmoke] px-4 text-[#444]">
-                            <th class="border-0 bg-light">
-                                <div class="p-2 px-3 uppercase">Product</div>
-                            </th>
-                            <th class="border-0 px-3 bg-blend-lighten">
-                                <div class="py-2 uppercase">Price</div>
-                            </th>
-                            <th class="border-0 px-3 bg-blend-lighten">
-                                <div class="py-2 uppercase">Quantity</div>
-                            </th>
-                            <th class="border-0 px-3 bg-blend-lighten">
-                                <div class="py-2 uppercase">Total</div>
-                            </th>
-                            <th class="border-0 px-3 bg-blend-lighten">
-                                <div class="py-2 uppercase">remove</div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr  *ngFor="let item of basket.items">
-                            <th>
-                                <div class="p-2 md:flex-row flex justify-between">
-                                    <img src="{{item.pictureUrl}}" alt="{{item.productName}}" style="max-height: 60px;">
-                                    <div class="ml-3 block items-middle">
-                                        <h5 class="mb-0 font-semibold text-[#6734eb]">
-                                            <a href="/shop/{{item.id}}"  >{{item.productName}}</a>
-                                        </h5>
-                                        <span class="italic font-normal text-[#555]">Type: {{item.type}}</span>
-                                    </div>
-                                </div>
-                            </th>
-                            <td class="align-middle font-semibold text-[#555] md:px-3">{{item.price | currency}}</td>
-                            <td class="align-middle md:px-3">
-                                <div class="flex items-center justify-between">
-                                    <i 
-                                    (click)="decrementItemQuantity(item)"
-                                    class="fa fa-minus-circle cursor-pointer text-[2em] text-green-600" 
-                                    ></i>
-                                    <span class="font-normal text-[1.5em] ">{{item.quantity}}</span>
-                                    <i 
-                                    (click)="incrementItemQuantity(item)"
-                                    class="fa fa-plus-circle cursor-pointer text-[2em] text-red-400" 
-                                    ></i>
-                                    
-                                </div>
-                            </td>
-                            <td class="align-middle md:px-3 font-semibold text-[#555]">{{item.price * item.quantity | currency}}</td>
-                            <td class="align-middle text-center md:px-3">
-                                <a class="text-red-500">
-                                    <i 
-                                    (click)="removeBasketItem(item)"
-                                    class="fa fa-trash" style="font-size: 2em; cursor: pointer;"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+          <app-basket-summary
+          (decrement)="decrementItemQuantity($event)"
+          (increment)="incrementItemQuantity($event)"
+          (remove)="removeBasketItem($event)"
+          ></app-basket-summary>
         </div>
     </div>
 <div class="flex md:flex-row flex-col items-center justify-center">

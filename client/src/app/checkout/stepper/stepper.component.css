@@ -1,0 +1,55 @@
+button.nav-link {
+    background: #e9ecef;
+    border-radius: 0;
+    padding: 5px 12px;
+    border: none;
+    color: #333;
+}
+
+button.nav-link:disabled:not(.active) {
+    color: #333;
+    background: #e9ecef;
+}
+#container{
+    margin: auto;
+    margin-top: 12px;
+}
+#container ul{
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 5px;
+    height: 70px;
+    width: fit-content;
+}
+#container ul li{
+    list-style: none;
+    outline: none;
+    padding: auto;
+    margin: 5px 10px;
+}
+#container ul .card{
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+#container ul .card button{
+    padding: 10px 8px ;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    color: gray;
+    background-color: transparent;
+   cursor: pointer;
+   border-radius: 5px;
+  
+   
+}
+
+#container ul .card button.active{
+    background-color: #cee;
+    
+
+}

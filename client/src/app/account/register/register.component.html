@@ -9,6 +9,7 @@
                 <label>Email Address</label>
            
                 <input 
+                class="py-2  font-mono text-gray-800 placeholder:font-mono placeholder:text-gray-400"
                 formControlName="email"
                 type="email"
                 type="text" 
@@ -16,7 +17,8 @@
 
                 <div *ngIf=" registerForm.get('email')?.status === 'PENDING'" class="fa fa-spinner fa-spin loader">
                     <span
-                    class="text-red-400 flex-wrap font-mono"
+                    id="emailerror"
+                class="text-red-400  text-[14px] font-mono "
                     *ngIf="
                     registerForm.get('email')?.invalid && 
                     registerForm.get('email')?.touched &&
@@ -24,14 +26,16 @@
     
                    > *Email address is required</span>
                    <span
-                   class="text-red-400 font-mono"
+                   id="emailerror"
+                   class="text-red-400  text-[14px] font-mono "
                    *ngIf="registerForm.get('email')?.errors?.['pattern']">
                    *Email is not valid
                    </span>
                 </div>
              
                <span
-               class="text-red-400 font-mono flex-wrap"
+               id="emailerror"
+               class="text-red-400  text-[14px] font-mono "
                *ngIf="registerForm.get('email')?.errors?.['emailExists']">
                *Email already in use
                </span>
@@ -41,11 +45,12 @@
                 <label>Display Name</label>
            
                 <input 
+                class="py-2  font-mono text-gray-800 placeholder:font-mono placeholder:text-gray-400"
                 formControlName="displayName"
                 type="displayName" 
                 placeholder="Enter a display name ">
-                <span
-                class="text-red-400 font-mono"
+                <span id="emailerror"
+                class="text-red-400  text-[14px] font-mono "
                 *ngIf="registerForm.get('displayName')?.invalid && 
                 registerForm.get('displayName')?.touched &&
                 registerForm.get('displayName')?.errors?.['required']"
@@ -56,16 +61,17 @@
             <div class="mydiv">
                 <label>Password</label>
                 <input 
+                class="py-2  font-mono text-gray-800 placeholder:font-mono placeholder:text-gray-400"
                 formControlName="password"
                 type="password"
                 placeholder="Enter your password..">
-                <span
-                class="text-red-400 font-mono"
+                <span id="emailerror"
+                class="text-red-400  text-[14px] font-mono "
                 *ngIf="registerForm.get('password')?.invalid && 
                 registerForm.get('password')?.touched &&
                 registerForm.get('password')?.errors?.['required']"
 
-               > Password is required</span>
+               > *Password is required</span>
               
             </div>
             <ul class="text-red-400 flex-wrap" *ngIf="errors">
